@@ -1,5 +1,8 @@
 package rest;
 
+import dtos.ChuckDto;
+import jokefetcher.JokeFetcher;
+
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Produces;
@@ -8,6 +11,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PUT;
 import javax.ws.rs.core.MediaType;
+import java.io.IOException;
 
 /**
  * REST Web Service
@@ -23,8 +27,9 @@ public class JokeResource {
    
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public String getJokes() {
-        return " {\"info\":\"Change me to return jokes as described in the exercise\"}";
+    public String getJokes() throws IOException {
+        JokeFetcher jokeFetcher = new JokeFetcher();
+        return jokeFetcher.fetchJokes();
     }
 
    
